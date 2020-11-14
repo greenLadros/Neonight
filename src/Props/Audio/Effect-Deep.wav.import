@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Effect-Deep.wav-cd9b5b0ea048e999d80eb7613cfadf5b.sample"
+
+[deps]
+
+source_file="res://Props/Audio/Effect-Deep.wav"
+dest_files=[ "res://.import/Effect-Deep.wav-cd9b5b0ea048e999d80eb7613cfadf5b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,199 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Props/ENVIRONMENT/background/buildings-bg.png" type="Texture" id=1]
+[ext_resource path="res://Props/ENVIRONMENT/background/near-buildings-bg.png" type="Texture" id=2]
+[ext_resource path="res://Props/ENVIRONMENT/background/skyline-a.png" type="Texture" id=3]
+[ext_resource path="res://Props/ENVIRONMENT/Tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://Props/Fonts/ThunderStrike/thunderstrike.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Props/Audio/bgMusic2.wav" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/Other/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Other/NPC.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Props/Fonts/ThunderStrike/thunderstrikecond.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scenes/Levels/GameState.gd" type="Script" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 75
+font_data = ExtResource( 9 )
+
+[node name="NeonField" type="Node2D"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 1025, 604 )
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer"]
+margin_top = -4.0
+margin_right = 1025.0
+margin_bottom = 600.0
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2( 1025, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer2"]
+margin_top = -4.0
+margin_right = 1025.0
+margin_bottom = 600.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Background/ParallaxLayer3"]
+margin_top = -4.0
+margin_right = 1025.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 0, 200 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -65350, 16, 0, 0, 1, 0, 70, 22, 0, 71, 22, 0, 72, 22, 0, 73, 22, 0, 123, 22, 0, 185, 16, 0, 187, 16, 0, 65536, 1, 0, 65561, 22, 0, 65562, 22, 0, 65563, 22, 0, 65604, 22, 0, 65611, 22, 0, 65657, 22, 0, 65662, 22, 0, 65669, 22, 0, 65670, 22, 0, 65673, 22, 0, 65674, 22, 0, 65682, 22, 0, 65683, 22, 0, 65716, 16, 0, 65718, 5, 0, 65720, 5, 0, 65722, 13, 0, 131072, 1, 0, 131088, 22, 0, 131092, 22, 0, 131093, 22, 0, 131095, 22, 0, 131101, 1, 0, 131102, 1, 0, 131103, 1, 0, 131104, 1, 0, 131105, 1, 0, 131137, 22, 0, 131138, 22, 0, 131148, 22, 0, 131149, 22, 0, 131150, 22, 0, 131151, 22, 0, 131152, 22, 0, 131153, 22, 0, 131154, 22, 0, 131167, 22, 0, 131168, 22, 0, 131169, 22, 0, 131170, 22, 0, 131171, 22, 0, 131172, 22, 0, 131173, 22, 0, 131174, 22, 0, 131175, 22, 0, 131176, 22, 0, 131177, 22, 0, 131178, 22, 0, 131179, 22, 0, 131183, 22, 0, 131184, 22, 0, 131185, 22, 0, 131186, 22, 0, 131187, 22, 0, 131188, 22, 0, 131189, 22, 0, 131190, 22, 0, 131191, 22, 0, 131200, 22, 0, 131201, 22, 0, 131202, 22, 0, 131203, 22, 0, 131204, 22, 0, 131205, 22, 0, 131210, 22, 0, 131211, 22, 0, 131212, 22, 0, 131213, 22, 0, 131214, 22, 0, 131215, 22, 0, 131216, 22, 0, 131248, 2, 0, 131249, 16, 0, 131250, 16, 0, 131258, 13, 0, 131261, 16, 0, 196608, 1, 0, 196617, 22, 0, 196618, 22, 0, 196622, 22, 0, 196625, 22, 0, 196627, 22, 0, 196630, 22, 0, 196643, 10, 0, 196647, 22, 0, 196648, 22, 0, 196649, 22, 0, 196650, 22, 0, 196651, 22, 0, 196652, 22, 0, 196653, 22, 0, 196654, 22, 0, 196655, 22, 0, 196656, 22, 0, 196665, 22, 0, 196666, 22, 0, 196667, 22, 0, 196668, 22, 0, 196669, 22, 0, 196670, 22, 0, 196671, 22, 0, 196676, 22, 0, 196677, 22, 0, 196678, 22, 0, 196679, 22, 0, 196680, 22, 0, 196681, 22, 0, 196682, 22, 0, 196701, 22, 0, 196702, 22, 0, 196757, 22, 0, 196758, 22, 0, 196759, 22, 0, 196762, 22, 0, 196763, 22, 0, 196764, 22, 0, 196765, 22, 0, 196766, 22, 0, 196767, 22, 0, 196768, 22, 0, 196769, 22, 0, 196770, 22, 0, 196771, 22, 0, 196772, 22, 0, 196773, 22, 0, 196775, 5, 0, 196783, 2, 0, 196789, 16, 0, 196794, 13, 0, 196797, 16, 0, 262144, 1, 0, 262151, 1, 0, 262155, 22, 0, 262157, 22, 0, 262167, 22, 0, 262168, 22, 0, 262169, 22, 0, 262170, 22, 0, 262171, 22, 0, 262180, 10, 0, 262181, 22, 0, 262182, 22, 0, 262194, 22, 0, 262195, 22, 0, 262196, 22, 0, 262197, 22, 0, 262198, 22, 0, 262199, 22, 0, 262228, 22, 0, 262229, 22, 0, 262230, 22, 0, 262231, 22, 0, 262235, 22, 0, 262236, 22, 0, 262252, 22, 0, 262253, 22, 0, 262291, 22, 0, 262292, 22, 0, 262312, 5, 0, 262313, 5, 0, 262314, 4, 0, 262315, 4, 0, 262316, 4, 0, 262317, 2, 0, 262318, 2, 0, 262327, 16, 0, 262328, 16, 0, 262329, 16, 0, 262330, 16, 0, 262334, 16, 0, 262335, 16, 0, 262336, 16, 0, 262342, 16, 0, 262343, 16, 0, 262345, 16, 0, 262347, 16, 0, 262349, 16, 0, 262351, 16, 0, 262352, 16, 0, 262353, 16, 0, 262354, 16, 0, 262355, 16, 0, 262356, 16, 0, 262357, 16, 0, 262358, 16, 0, 327680, 1, 0, 327686, 1, 0, 327687, 1, 0, 327689, 22, 0, 327769, 22, 0, 327770, 22, 0, 327790, 22, 0, 327791, 22, 0, 327792, 22, 0, 327811, 22, 0, 327812, 22, 0, 327813, 22, 0, 327825, 22, 0, 327826, 22, 0, 327874, 16, 0, 327875, 16, 0, 327876, 16, 0, 327880, 16, 0, 327882, 16, 0, 327884, 16, 0, 327886, 16, 0, 393216, 1, 0, 393219, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393329, 22, 0, 393330, 22, 0, 393331, 22, 0, 393332, 22, 0, 393333, 22, 0, 393334, 22, 0, 393335, 22, 0, 393336, 22, 0, 393337, 22, 0, 393338, 22, 0, 393339, 22, 0, 393340, 22, 0, 393341, 22, 0, 393344, 22, 0, 393345, 22, 0, 393346, 22, 0, 393352, 22, 0, 393353, 22, 0, 393354, 22, 0, 393355, 22, 0, 393356, 22, 0, 393357, 22, 0, 393358, 22, 0, 393359, 22, 0, 393386, 16, 0, 393387, 16, 0, 393388, 16, 0, 393413, 16, 0, 393425, 13, 0, 458752, 1, 0, 458754, 1, 0, 458755, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458949, 16, 0, 458950, 16, 0, 458961, 13, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524487, 16, 0, 524488, 16, 0, 524489, 16, 0, 524490, 16, 0, 524491, 16, 0, 524492, 16, 0, 524493, 16, 0, 524494, 16, 0, 524495, 16, 0, 524496, 16, 0, 524497, 16, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 720896, 1, 0, 720897, 1, 0, 720898, 1, 0, 720899, 1, 0, 720901, 1, 0, 720902, 1, 0, 720903, 1, 0 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 512.0
+margin_top = 64.0
+margin_right = 896.0
+margin_bottom = 128.0
+custom_fonts/font = SubResource( 1 )
+text = "To Jump press SPACE,
+ Try not to fall."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 112.0
+margin_right = 448.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 1 )
+text = "To Move use the
+w,s,a,d keys."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 1216.0
+margin_top = 88.0
+margin_right = 1536.0
+margin_bottom = 168.0
+custom_fonts/font = SubResource( 1 )
+text = "To Shoot Click the left
+mouse Button,
+Dont get killed!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 2352.0
+margin_top = 40.0
+margin_right = 2737.0
+margin_bottom = 133.0
+custom_fonts/font = SubResource( 1 )
+text = "Well Done!
+Now you are on your own"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 5208.0
+margin_top = 32.0
+margin_right = 5593.0
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 1 )
+text = "Welcome to
+JUNK TOWN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="."]
+margin_left = 6912.0
+margin_top = 32.0
+margin_right = 7297.0
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 1 )
+text = "Welcome to
+NEON FIELDS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 344, 200 )
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 1848, 280 )
+
+[node name="NPC2" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 2040, 280 )
+
+[node name="NPC3" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 2544, 152 )
+
+[node name="NPC4" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 2376, 184 )
+
+[node name="NPC5" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 2664, 248 )
+
+[node name="NPC6" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 3080, 240 )
+
+[node name="NPC7" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 3776, 248 )
+
+[node name="NPC8" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 4008, 376 )
+
+[node name="NPC9" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 3968, 184 )
+
+[node name="NPC10" parent="NPCs" instance=ExtResource( 8 )]
+position = Vector2( 4608, 248 )
+
+[node name="GameState" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="Count" type="Label" parent="GameState"]
+margin_left = 920.0
+margin_right = 1024.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 2 )
+text = "25"
+__meta__ = {
+"_edit_use_anchors_": false
+}
