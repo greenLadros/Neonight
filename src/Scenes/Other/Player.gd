@@ -20,6 +20,9 @@ signal hurt
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.play("Idle")
+	##connect
+	var GUINode = get_tree().get_root().get_node("NeonField/GameState")
+	connect("hurt",GUINode,"updateHealth")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -86,6 +89,7 @@ func _on_Timer_timeout():
 	DEBOUNCE = false
 
 func hurt(dmg):
+	print("man")
 	HEALTH -= dmg
 	emit_signal("hurt", HEALTH)
 	if HEALTH <= 0:

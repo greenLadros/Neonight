@@ -1,23 +1,21 @@
 extends KinematicBody2D
 
-
+signal explosion
 # global vars
 onready var sprite = $Sprite
-onready var player = get_tree().get_root().get_node("Player")
-
-# Called when the node enters the scene tree for the first time.
+onready var player = get_tree().get_root().get_child(0).get_child(0)
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):        #should be players position
-	if position.distance_to(Vector2(0,0)) < 100:
-		shoot(player)
-
-func shoot(target):
-	pass
-
+	connect("explosion",player,"hurt",[1])
+	
 func explode():
 	sprite.play('Explosion')
+	$Timer.start(0.5)
+	emit_signal("explosion")
+
+
+func _on_Area2D_body_entered(body):
+	explode()
+
+
+func _on_Timer_timeout():
 	queue_free()

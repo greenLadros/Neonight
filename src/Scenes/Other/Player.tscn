@@ -29,16 +29,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Hurt",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "Jump",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Idle",
@@ -49,15 +39,25 @@ animations = [ {
 "name": "Shoot",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "Back-Jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 24 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "Run",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Hurt",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 7 ), ExtResource( 17 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Back-Jump",
+"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -66,6 +66,8 @@ height = 50.0
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 448, 256 )
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 26 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
