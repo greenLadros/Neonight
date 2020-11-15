@@ -27,6 +27,7 @@ radius = 39.8543
 height = 0.0
 
 [node name="NPC" type="KinematicBody2D"]
+scale = Vector2( 0.5, 0.5 )
 collision_mask = 2
 script = ExtResource( 1 )
 
@@ -40,6 +41,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -2.38419e-06, 1.18921 )
+scale = Vector2( 0.75, 0.75 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]

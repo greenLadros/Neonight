@@ -1,8 +1,65 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Props/Fonts/StoneWalls/StoneWalls.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/UI/Gameover.gd" type="Script" id=2]
+[ext_resource path="res://Props/Audio/Effect-cyber.wav" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 125
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 75
+font_data = ExtResource( 1 )
 
 [node name="Gameover" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0235294, 0.0235294, 0.0235294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 219.0
+margin_top = 104.0
+margin_right = 801.0
+margin_bottom = 249.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Button" parent="."]
+margin_left = 369.26
+margin_top = 300.978
+margin_right = 617.26
+margin_bottom = 382.978
+custom_fonts/font = SubResource( 2 )
+text = "RESTART"
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 369.26
+margin_top = 401.627
+margin_right = 617.26
+margin_bottom = 483.627
+custom_fonts/font = SubResource( 2 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

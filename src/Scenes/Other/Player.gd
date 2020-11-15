@@ -7,7 +7,7 @@ onready var timer = get_node("Timer")
 var motion = Vector2(0,0)
 const SPEED = 200
 const JUMP = 7500
-const GRAVITY = 200
+const GRAVITY = 120
 const UP = Vector2(0,-1)
 var ON_FLOOR = true
 var PASSED_LIMIT = false
@@ -28,8 +28,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	applyGravity(delta)
-	limit(delta) ### not sure if working
+	limit(delta) 
 	move()
+	checkHaveFallen()
 
 func move():
 	if Input.is_action_pressed("right") and not Input.is_action_pressed("left") and PASSED_LIMIT==false:
@@ -46,11 +47,9 @@ func move():
 		sprite.play("Run")
 	elif Input.is_action_pressed("up") and not Input.is_action_pressed("down") and PASSED_LIMIT==false and DEBOUNCE==false: #and ON_FLOOR==true  #and not Input.is_action_pressed("left") and not Input.is_action_pressed("right")
 		#JUMP
-		motion.y = -JUMP
 		DEBOUNCE = true
-		timer.start(0.3)
-		#animate
-		#######################sprite.play('Jump')
+		motion.y = -JUMP
+		timer.start(0.5)
 	elif Input.is_action_pressed("down") and not Input.is_action_pressed("up") and PASSED_LIMIT==false: #and ON_FLOOR==true  #and not Input.is_action_pressed("left") and not Input.is_action_pressed("right")
 		#CROUCH
 		pass
@@ -79,7 +78,7 @@ func applyGravity(delta):
 
 func limit(delta):
 	#check for speed and height limits
-	if sprite.get_global_position().y < 64:
+	if sprite.get_global_position().y < 100:
 		PASSED_LIMIT = true
 	else:
 		PASSED_LIMIT = false
@@ -89,10 +88,12 @@ func _on_Timer_timeout():
 	DEBOUNCE = false
 
 func hurt(dmg):
-	print("man")
 	HEALTH -= dmg
 	emit_signal("hurt", HEALTH)
 	if HEALTH <= 0:
 		#change to game over scene
 		get_tree().change_scene("res://Scenes/UI/Gameover.tscn")
 	
+func checkHaveFallen():
+	if sprite.get_global_position().y > 1016:
+		get_tree().change_scene("res://Scenes/UI/Gameover.tscn")
